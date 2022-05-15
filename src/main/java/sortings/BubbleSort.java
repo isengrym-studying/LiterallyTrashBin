@@ -12,14 +12,13 @@ public class BubbleSort implements Sorting {
         do {
             isSorted = true;
             for (int i = 0; i < endIndex; i++) {
-                if (i != items.size()-1 &&
-                        items.get(i) > items.get(i+1)) {
+                if (items.get(i) > items.get(i+1)) {
 
                     Collections.swap(items, i, i+1);
                     isSorted = false;
                 }
             }
-            endIndex -= 1;
+            endIndex--;
         } while(!isSorted);
 
         return items;

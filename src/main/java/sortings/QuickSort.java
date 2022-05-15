@@ -12,26 +12,28 @@ public class QuickSort implements Sorting {
 
     public void recursivelySort(List<Integer> items, int low, int high) {
         if (low < high) {
-            int i = partition(items, low, high);
-
-            recursivelySort(items, low, i - 1);
-            recursivelySort(items, i + 1, high);
+            int pivotIndex = partition(items, low, high);
+            recursivelySort(items, low, pivotIndex - 1);
+            recursivelySort(items, pivotIndex + 1, high);
         }
     }
 
     private int partition(List<Integer> items, int low, int high) {
-        int pivot = items.get(high);
-        int smallerElementIndex = low -1;
+        int pivotIndex = high;
+        int pivot = items.get(pivotIndex);
+        int smallerElementIndex = low - 1;
 
-        for (int loopVariable = low; loopVariable <= high - 1; loopVariable++) {
+        for (int loopVariable = low; loopVariable < high; loopVariable++) {
             if (items.get(loopVariable) <= pivot) {
                 smallerElementIndex++;
                 Collections.swap(items, smallerElementIndex, loopVariable);
             }
         }
-        Collections.swap(items, smallerElementIndex + 1, high);
-        smallerElementIndex += 1;
-        return smallerElementIndex;
+        smallerElementIndex++;
+        Collections.swap(items, smallerElementIndex, pivotIndex);
+        pivotIndex = smallerElementIndex;
+
+        return pivotIndex;
     }
 
     //Другая реализация

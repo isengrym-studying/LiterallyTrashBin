@@ -10,10 +10,12 @@ public class BinarySearch implements Search {
         int rightIndex = arrayLength - 1;
         int middleIndex;
         int middleIndexIncremented;
+        int middleIndexDecremented;
 
         while(leftIndex != rightIndex) {
             middleIndex = leftIndex + (rightIndex - leftIndex) / 2;
             middleIndexIncremented = middleIndex + 1;
+            middleIndexDecremented = middleIndex - 1;
 
             if (array[middleIndex] == elementToBeSearched) {
                 if (middleIndex == leftIndex) {
@@ -27,7 +29,7 @@ public class BinarySearch implements Search {
                 leftIndex = middleIndexIncremented;
             }
             else if (elementToBeSearched < array[middleIndex]) {
-                rightIndex = middleIndexIncremented;
+                rightIndex = middleIndexDecremented;
             }
         }
 

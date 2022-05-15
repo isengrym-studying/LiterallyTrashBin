@@ -22,9 +22,16 @@ public class SortingTest {
                 -7, -2, 0, 1, 2, 3, 3, 4, 6, 6, 7, 7, 8, 8, 9, 12, 15
         ));
     }
+
     @Test
     public void isBubbleSortingWorksCorrectly() {
         sorting = new BubbleSort();
+        assertEquals(expected, sorting.sort(objectsToBeSorted));
+    }
+
+    @Test
+    public void isCocktailSortingWorksCorrectly() {
+        sorting = new CocktailSort();
         assertEquals(expected, sorting.sort(objectsToBeSorted));
     }
 
@@ -37,12 +44,6 @@ public class SortingTest {
     @Test
     public void isQuickSortingWorksCorrectly() {
         sorting = new QuickSort();
-        assertEquals(expected, sorting.sort(objectsToBeSorted));
-    }
-
-    @Test
-    public void isCocktailSortingWorksCorrectly() {
-        sorting = new CocktailSort();
         assertEquals(expected, sorting.sort(objectsToBeSorted));
     }
 }
