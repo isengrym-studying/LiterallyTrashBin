@@ -145,45 +145,47 @@ public class LinkedList <T> implements Iterable<T>{
     public Iterator<T> iterator() {
         return new ListIterator<>(this);
     }
-}
 
-class ListIterator<T> implements Iterator<T> {
-    Node<T> currentNode;
 
-    public ListIterator(LinkedList<T> list) {
-        currentNode = list.getFirst();
+    static class ListIterator<T> implements Iterator<T> {
+        private Node<T> currentNode;
+
+        public ListIterator(LinkedList<T> list) {
+            currentNode = list.getFirst();
+        }
+
+        @Override
+        public boolean hasNext() {
+            return currentNode != null;
+        }
+
+        @Override
+        public T next() {
+            T data = currentNode.getData();
+            currentNode = currentNode.getNextNode();
+            return data;
+        }
     }
 
-    @Override
-    public boolean hasNext() {
-        return currentNode != null;
+    static class Node <T>{
+        private T data;
+        private Node<T> nextNode = null;
+
+        public T getData() {
+            return data;
+        }
+
+        public void setData(T data) {
+            this.data = data;
+        }
+
+        public Node<T> getNextNode() {
+            return nextNode;
+        }
+
+        public void setNextNode(Node<T> nextNode) {
+            this.nextNode = nextNode;
+        }
     }
 
-    @Override
-    public T next() {
-        T data = currentNode.getData();
-        currentNode = currentNode.getNextNode();
-        return data;
-    }
-}
-
-class Node <T>{
-    private T data;
-    private Node nextNode = null;
-
-    public T getData() {
-        return data;
-    }
-
-    public void setData(T data) {
-        this.data = data;
-    }
-
-    public Node getNextNode() {
-        return nextNode;
-    }
-
-    public void setNextNode(Node nextNode) {
-        this.nextNode = nextNode;
-    }
 }
